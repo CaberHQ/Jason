@@ -1,7 +1,7 @@
 using Caber.Jason.Core;
 using MessagePack;
 
-namespace Caber.Jason.Formatter.MessagePack;
+namespace Caber.Jason.Serializer.MessagePack;
 
 public class MessagePackMessageSerializer : IMessageSerializer
 {

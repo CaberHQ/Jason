@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Jason.Client", "src\Caber.Jason.Client\Caber.Jason.Client.csproj", "{AE7BD52C-F10B-477E-9F9C-8E8483E686EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Jason.Formatter.MessagePack", "src\Caber.Jason.Formatter.MessagePack\Caber.Jason.Formatter.MessagePack.csproj", "{43A88628-131B-4260-BDD6-771695A15B99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Jason.Serializer.MessagePack", "src\Caber.Jason.Serializer.MessagePack\Caber.Jason.Serializer.MessagePack.csproj", "{43A88628-131B-4260-BDD6-771695A15B99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Jason.Core", "src\Caber.Jason.Core\Caber.Jason.Core.csproj", "{D6BDE56D-7408-4BC6-A653-95AECB0BD648}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Jason.Formatter.Cbor", "src\Caber.Jason.Formatter.Cbor\Caber.Jason.Formatter.Cbor.csproj", "{A1475861-D882-4945-B442-CB9349757C9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Jason.Serializer.Cbor", "src\Caber.Jason.Serializer.Cbor\Caber.Jason.Serializer.Cbor.csproj", "{A1475861-D882-4945-B442-CB9349757C9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
