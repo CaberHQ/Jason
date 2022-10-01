@@ -5,16 +5,18 @@ using Caber.Jason.Core.Model;
 
 namespace Caber.Jason.Client;
 
-public class JsonRpcWebSocket : IDisposable
+public sealed class JsonRpcWebSocket : IDisposable
 {
     private readonly Uri _uri;
+    
     private readonly ClientWebSocket _socket;
+    
     private readonly TimeSpan _timeout;
 
-    internal JsonRpcWebSocket(Uri uri, TimeSpan? timeout = default)
+    public JsonRpcWebSocket(JsonRpcWebSocketOptions options)
     {
-        _uri = uri;
-        _timeout = timeout ?? TimeSpan.FromSeconds(20);
+        _uri = options.Uri;
+        _timeout = options.DefaultTimeout;
 
         _socket = new ClientWebSocket();
     }

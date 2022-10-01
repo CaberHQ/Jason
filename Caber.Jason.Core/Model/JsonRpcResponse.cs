@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Caber.Jason.Core.Model;
 
-public class JsonRpcResponse<T> : JsonRpcObjectBase where T : notnull
+public class JsonRpcResponse<T> : JsonRpcObjectBase 
 {
     [JsonPropertyName("error")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

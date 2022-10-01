@@ -5,19 +5,19 @@ namespace Caber.Jason.Core.Model;
 [JsonConverter(typeof(JsonRpcParamsConverter))]
 public class JsonRpcParams
 {
-    internal JsonRpcParamsType Type { get; }
+    public JsonRpcParamsType Type { get; }
 
-    internal IDictionary<string, object> ByNameValue { get; }
+    public IDictionary<string, object> ByNameValue { get; }
     
-    internal IEnumerable<object> ByPositionValue { get; }
+    public IEnumerable<object> ByPositionValue { get; }
 
-    internal JsonRpcParams(IDictionary<string, object> value)
+    public JsonRpcParams(IDictionary<string, object> value)
     {
         Type = JsonRpcParamsType.ByName;
         ByNameValue = value;
     }
 
-    internal JsonRpcParams(IEnumerable<object> value)
+    public JsonRpcParams(IEnumerable<object> value)
     {
         Type = JsonRpcParamsType.ByPosition;
         ByPositionValue = value;
