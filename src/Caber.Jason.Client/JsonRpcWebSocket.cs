@@ -9,9 +9,9 @@ namespace Caber.Jason.Client;
 public sealed class JsonRpcWebSocket : IDisposable
 {
     private readonly Uri _uri;
-    
+
     private readonly ClientWebSocket _socket;
-    
+
     private readonly TimeSpan _timeout;
 
     private readonly IMessageSerializer _messageSerializer;
@@ -21,13 +21,39 @@ public sealed class JsonRpcWebSocket : IDisposable
         _uri = options.Uri;
         _timeout = options.DefaultTimeout;
         _messageSerializer = options.MessageSerializer;
-        
+
         _socket = new ClientWebSocket();
     }
 
     public async Task ConnectAsync(CancellationToken cancellationToken = default)
     {
         await _socket.ConnectAsync(_uri, cancellationToken);
+    }
+
+    public async Task<JsonRpcResponse<T>> CallAsync<T>(string method, IDictionary<string, object> parameters,
+        CancellationToken cancellationToken = default)
+    {
+        var request = new JsonRpcRequest
+        {
+            Id = Guid.NewGuid().ToString(),
+            Method = method,
+            Params = new JsonRpcParams(parameters),
+        };
+
+        return await SendAsync<T>(request, cancellationToken);
+    }
+    
+    public async Task<JsonRpcResponse<T>> CallAsync<T>(string method, IEnumerable<object> parameters,
+        CancellationToken cancellationToken = default)
+    {
+        var request = new JsonRpcRequest
+        {
+            Id = Guid.NewGuid().ToString(),
+            Method = method,
+            Params = new JsonRpcParams(parameters),
+        };
+
+        return await SendAsync<T>(request, cancellationToken);
     }
 
     public async Task<JsonRpcResponse<T>> SendAsync<T>(JsonRpcRequest request,
