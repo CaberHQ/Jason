@@ -1,6 +1,7 @@
 using System.IO.Pipelines;
 using System.Net.WebSockets;
 using System.Text.Json;
+using Caber.Jason.Core;
 using Caber.Jason.Core.Model;
 
 namespace Caber.Jason.Client;
@@ -13,11 +14,14 @@ public sealed class JsonRpcWebSocket : IDisposable
     
     private readonly TimeSpan _timeout;
 
+    private readonly IMessageSerializer _messageSerializer;
+
     public JsonRpcWebSocket(JsonRpcWebSocketOptions options)
     {
         _uri = options.Uri;
         _timeout = options.DefaultTimeout;
-
+        _messageSerializer = options.MessageSerializer;
+        
         _socket = new ClientWebSocket();
     }
 
@@ -118,7 +122,7 @@ public sealed class JsonRpcWebSocket : IDisposable
         {
             await using var stream = writer.AsStream(true);
 
-            await JsonSerializer.SerializeAsync(stream, request, cancellationToken: cancellationToken);
+            await _messageSerializer.SerializeAsync(stream, request, cancellationToken);
         }
         finally
         {
@@ -133,8 +137,7 @@ public sealed class JsonRpcWebSocket : IDisposable
         {
             await using var stream = reader.AsStream(true);
 
-            return await JsonSerializer.DeserializeAsync<JsonRpcResponse<T>?>(stream,
-                cancellationToken: cancellationToken);
+            return await _messageSerializer.DeserializeAsync<JsonRpcResponse<T>?>(stream, cancellationToken);
         }
         finally
         {
