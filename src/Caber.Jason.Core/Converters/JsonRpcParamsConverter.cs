@@ -1,7 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Caber.Jason.Core.Model;
 
-namespace Caber.Jason.Core.Model;
+namespace Caber.Jason.Core.Converters;
 
 public class JsonRpcParamsConverter : JsonConverter<JsonRpcParams>
 {
